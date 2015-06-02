@@ -1,4 +1,21 @@
 Rails.application.routes.draw do
+  # Routes for the Group resource:
+  # CREATE
+  get "/groups/new", :controller => "groups", :action => "new"
+  post "/create_group", :controller => "groups", :action => "create"
+
+  # READ
+  get "/groups", :controller => "groups", :action => "index"
+  get "/groups/:id", :controller => "groups", :action => "show"
+
+  # UPDATE
+  get "/groups/:id/edit", :controller => "groups", :action => "edit"
+  post "/update_group/:id", :controller => "groups", :action => "update"
+
+  # DELETE
+  get "/delete_group/:id", :controller => "groups", :action => "destroy"
+  #------------------------------
+
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   root "events#index"

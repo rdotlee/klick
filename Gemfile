@@ -1,4 +1,6 @@
 source 'http://rubygems.org'
+# Use Admin for Admin Activities
+gem 'activeadmin', github: 'activeadmin'
 # Use Devise for Login
 gem 'devise'
 
