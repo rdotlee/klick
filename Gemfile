@@ -1,5 +1,9 @@
-source 'https://rubygems.org'
+source 'http://rubygems.org'
+# Use Devise for Login
+gem 'devise'
 
+# Use Starter Generator for CRUD and G7
+gem 'starter_generators', :git => "http://github.com/rbetina/starter_generators.git", :branch => "simple"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.1'

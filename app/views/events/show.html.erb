@@ -1,0 +1,55 @@
+<!-- Responsive panel example-->
+
+<div class="row">
+  <div class="col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Event #<%= @event.id %></h3>
+      </div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-md-12">
+            <dl class="dl-horizontal">
+              <dt>Description</dt>
+              <dd><%= @event.description %></dd>
+
+              <dt>Event type</dt>
+              <dd><%= @event.event_type_id %></dd>
+
+              <dt>Date</dt>
+              <dd><%= @event.date %></dd>
+
+              <dt>Time</dt>
+              <dd><%= @event.time %></dd>
+
+              <dt>Location</dt>
+              <dd><%= @event.location_id %></dd>
+
+              <dt>Count registration</dt>
+              <dd><%= @event.count_registration %></dd>
+
+              <dt>Group size</dt>
+              <dd><%= @event.group_size %></dd>
+
+            </dl>
+            <div class="btn-group btn-group-justified">
+              <a href="/events" class="btn btn-primary">
+                <i class="fa fa-chevron-left"></i>
+              </a>
+
+              <a href="/events/<%= @event.id %>/edit" class="btn btn-warning">
+                <i class="fa fa-edit"></i>
+              </a>
+
+              <a href="/delete_event/<%= @event.id %>" class="btn btn-danger" rel="nofollow">
+                <i class="fa fa-trash-o"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- End responsive panel example -->
