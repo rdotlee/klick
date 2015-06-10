@@ -1,4 +1,11 @@
 source 'http://rubygems.org'
+# Use Chronic for parsing strings into datetime
+gem 'chronic'
+
+# use Bootstrap Datepicker
+gem 'momentjs-rails', '>= 2.9.0'
+gem 'bootstrap3-datetimepicker-rails', '~> 4.7.14'
+
 # Use Admin for Admin Activities
 gem 'activeadmin', github: 'activeadmin'
 # Use Devise for Login

@@ -4,7 +4,7 @@
   <div class="col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8">
     <div class="panel panel-default">
       <div class="panel-heading">
-        <h3 class="panel-title">Event #<%= @event.id %></h3>
+        <h3 class="panel-title"><%= @event.date.strftime('%a %b. %e, %Y') %> - <%= @event.description.first(40) %></h3>
       </div>
       <div class="panel-body">
         <div class="row">
@@ -14,16 +14,16 @@
               <dd><%= @event.description %></dd>
 
               <dt>Event type</dt>
-              <dd><%= @event.event_type_id %></dd>
+              <dd><%= @event.event_type.name %></dd>
 
               <dt>Date</dt>
-              <dd><%= @event.date %></dd>
+              <dd><%= @event.date.strftime('%a %b. %e, %Y') %></dd>
 
               <dt>Time</dt>
-              <dd><%= @event.time %></dd>
+              <dd><%= @event.time.strftime('%I:%M %p') %></dd>
 
               <dt>Location</dt>
-              <dd><%= @event.location_id %></dd>
+              <dd><%= @event.location.name %></dd>
 
               <dt>Count registration</dt>
               <dd><%= @event.count_registration %></dd>

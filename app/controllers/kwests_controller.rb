@@ -13,7 +13,7 @@ class KwestsController < ApplicationController
 
   def create
     @kwest = Kwest.new
-    @kwest.name = params[:name]
+    @kwest.trip = params[:trip]
     @kwest.year = params[:year]
 
     if @kwest.save
@@ -30,7 +30,7 @@ class KwestsController < ApplicationController
   def update
     @kwest = Kwest.find(params[:id])
 
-    @kwest.name = params[:name]
+    @kwest.trip = params[:trip]
     @kwest.year = params[:year]
 
     if @kwest.save

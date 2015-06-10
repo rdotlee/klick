@@ -1,12 +1,12 @@
 <!-- Validation failure messages -->
 
 <% if @location.errors.any? %>
-  <% @location.errors.full_messages.each do |message| %>
-    <div class="alert alert-dismissable alert-danger">
-      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-      <%= message %>
-    </div>
-  <% end %>
+<% @location.errors.full_messages.each do |message| %>
+<div class="alert alert-dismissable alert-danger">
+  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+  <%= message %>
+</div>
+<% end %>
 <% end %>
 
 <!-- Responsive panel example -->
@@ -15,20 +15,20 @@
   <div class="col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8">
     <div class="panel panel-default">
       <div class="panel-heading">
-        <h3 class="panel-title">Edit Location #<%= @location.id %></h3>
+        <h3 class="panel-title">Edit <%= @location.name %></h3>
       </div>
       <div class="panel-body">
         <form action="/update_location/<%= @location.id %>" method="post" class="form-horizontal">
           <!-- Hidden input for authenticity token to protect from forgery -->
           <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
 
-          <!-- Label and input for address -->
+          <!-- Label and input for name -->
           <div class="form-group">
-            <label for="address" class="col-sm-2 control-label">
-              Address
+            <label for="name" class="col-sm-2 control-label">
+              Name
             </label>
             <div class="col-sm-10">
-              <input type="text" id="address" name="address" placeholder="Address" class="form-control" value="<%= @location.address %>">
+              <input type="text" id="name" name="name" placeholder="Name" class="form-control" value="<%= @location.name %>">
             </div>
           </div>
 
@@ -42,13 +42,13 @@
             </div>
           </div>
 
-          <!-- Label and input for name -->
+          <!-- Label and input for address -->
           <div class="form-group">
-            <label for="name" class="col-sm-2 control-label">
-              Name
+            <label for="address" class="col-sm-2 control-label">
+              Address
             </label>
             <div class="col-sm-10">
-              <input type="text" id="name" name="name" placeholder="Name" class="form-control" value="<%= @location.name %>">
+              <input type="text" id="address" name="address" placeholder="Address" class="form-control" value="<%= @location.address %>">
             </div>
           </div>
 
@@ -57,8 +57,11 @@
             <label for="opening_time" class="col-sm-2 control-label">
               Opening time
             </label>
-            <div class="col-sm-10">
-              <input type="text" id="opening_time" name="opening_time" placeholder="Opening time" class="form-control" value="<%= @location.opening_time %>">
+            <div class='col-sm-10 input-group date' id='datetimepicker3'>
+            <input type='text' class="form-control" name="opening_time" id="opening_time"  value="<%= @location.opening_time %>"/>
+              <span class="input-group-addon">
+                <span class="glyphicon glyphicon-time"></span>
+              </span>
             </div>
           </div>
 
@@ -67,9 +70,11 @@
             <label for="closing_time" class="col-sm-2 control-label">
               Closing time
             </label>
-            <div class="col-sm-10">
-              <input type="text" id="closing_time" name="closing_time" placeholder="Closing time" class="form-control" value="<%= @location.closing_time %>">
-            </div>
+            <div class='col-sm-10 input-group date' id='datetimepicker4'>
+            <input type='text' class="form-control" name="closing_time" id="closing_time"  value="<%= @location.closing_time %>"/>
+              <span class="input-group-addon">
+                <span class="glyphicon glyphicon-time"></span>
+              </span>
           </div>
 
           <div class="form-group">
@@ -89,3 +94,13 @@
 
 
 <!-- End responsive panel example -->
+<script type="text/javascript">
+  $(function () {
+    $('#datetimepicker3').datetimepicker({
+      format: 'LT'
+    });
+    $('#datetimepicker4').datetimepicker({
+      format: 'LT'
+    });
+  });
+</script>

@@ -16,28 +16,25 @@
 <hr>
 
 <div class="row isotope-container">
-<% @locations.each do |location| %>
+  <% @locations.each do |location| %>
   <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 isotope-item">
     <div class="panel panel-default">
       <div class="panel-heading">
-        <h3 class="panel-title">Location #<%= location.id %></h3>
+        <h3 class="panel-title"><%= location.name %></h3>
       </div>
       <div class="panel-body">
         <dl>
-          <dt>Address</dt>
-          <dd><%= location.address %></dd>
-
           <dt>Description</dt>
           <dd><%= location.description %></dd>
 
-          <dt>Name</dt>
-          <dd><%= location.name %></dd>
+          <dt>Address</dt>
+          <dd><%= location.address %></dd>
 
           <dt>Opening time</dt>
-          <dd><%= location.opening_time %></dd>
+          <dd><%= location.opening_time.strftime('%I:%M %p') %></dd>
 
           <dt>Closing time</dt>
-          <dd><%= location.closing_time %></dd>
+          <dd><%= location.closing_time.strftime('%I:%M %p') %></dd>
 
         </dl>
         <div class="btn-group btn-group-justified">
@@ -56,7 +53,7 @@
       </div>
     </div>
   </div>
-<% end %>
+  <% end %>
 </div>
 
 <!-- You can ignore the following. It's a quick and dirty example of how to get a Pinterest-style layout with quick search. -->

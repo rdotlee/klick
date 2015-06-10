@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
   def index
-    @events = Event.all
+    @events = Event.order("date ASC")
   end
 
   def show
@@ -37,7 +37,7 @@ class EventsController < ApplicationController
 
     @event.description = params[:description]
     @event.event_type_id = params[:event_type_id]
-    @event.date = params[:date]
+    @event.date = Chronic.parse(params[:date])
     @event.time = params[:time]
     @event.location_id = params[:location_id]
     @event.count_registration = params[:count_registration]
