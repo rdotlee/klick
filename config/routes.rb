@@ -128,6 +128,8 @@ Rails.application.routes.draw do
   get "/registrations/new", :controller => "registrations", :action => "new"
   post "/create_registration", :controller => "registrations", :action => "create"
 
+  get  "/register_for_event/:event_id/:user_id", :controller => "registrations", :action=> "register_for_event"
+
   # READ
   get "/registrations", :controller => "registrations", :action => "index"
   get "/registrations/:id", :controller => "registrations", :action => "show"
@@ -135,6 +137,8 @@ Rails.application.routes.draw do
   # UPDATE
   get "/registrations/:id/edit", :controller => "registrations", :action => "edit"
   post "/update_registration/:id", :controller => "registrations", :action => "update"
+
+  get  "/assign_groups_for_event/:event_id/", :controller => "registrations", :action=> "assign_groups_for_event"
 
   # DELETE
   get "/delete_registration/:id", :controller => "registrations", :action => "destroy"

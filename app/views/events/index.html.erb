@@ -1,7 +1,9 @@
 <div class="page-header">
   <h1>
     Events
+      <% if current_user.admin   %>
     <a href="/events/new" class="btn btn-lg btn-success"><i class="fa fa-plus"></i></a>
+      <% end %>
   </h1> (upcoming events listed first)
 </div>
 
@@ -16,7 +18,7 @@
 <hr>
 
 <div class="row isotope-container">
-<% @events.each do |event| %>
+  <% @events.each do |event| %>
   <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 isotope-item">
     <div class="panel panel-default">
       <div class="panel-heading">
@@ -39,8 +41,8 @@
           <dt>Location</dt>
           <dd><%= event.location.name %></dd>
 
-          <dt>Count registration</dt>
-          <dd><%= event.count_registration %></dd>
+          <dt># of Participants</dt>
+          <dd><%= event.registrations.count %></dd>
 
           <dt>Group size</dt>
           <dd><%= event.group_size %></dd>
@@ -51,6 +53,7 @@
             <i class="fa fa-search-plus"></i>
           </a>
 
+          <% if current_user.admin? %>
           <a href="/events/<%= event.id %>/edit" class="btn btn-warning">
             <i class="fa fa-edit"></i>
           </a>
@@ -58,11 +61,17 @@
           <a href="/delete_event/<%= event.id %>" class="btn btn-danger" rel="nofollow">
             <i class="fa fa-trash-o"></i>
           </a>
+          <% end %>
+        </div>
+        <div class="btn-group btn-group-justified">
+        <a href="/register_for_event/<%= event.id %>/<%= current_user.id %>" class="btn btn-success">
+            <i class="fa fa-calendar"> Sign-Up Here</i>
+          </a>
         </div>
       </div>
     </div>
   </div>
-<% end %>
+  <% end %>
 </div>
 
 <!-- You can ignore the following. It's a quick and dirty example of how to get a Pinterest-style layout with quick search. -->

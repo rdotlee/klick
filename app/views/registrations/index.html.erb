@@ -1,7 +1,6 @@
 <div class="page-header">
   <h1>
     Registrations
-    <a href="/registrations/new" class="btn btn-lg btn-success"><i class="fa fa-plus"></i></a>
   </h1>
 </div>
 
@@ -14,24 +13,94 @@
 </div>
 
 <hr>
-
-<div class="row isotope-container">
-<% @registrations.each do |registration| %>
-  <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 isotope-item">
+<% if current_user.admin %>
+<!--ADNMIN INDEX -->
+<div class="row">
+  <div class="col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8">
     <div class="panel panel-default">
       <div class="panel-heading">
-        <h3 class="panel-title">Registration #<%= registration.id %></h3>
+        <h3 class="panel-title">Registrations</h3>
+      </div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-md-12">
+
+           <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Event</th>
+                <th>Event Date</th>
+                <th>Participant</th>
+                <th>E-mail</th>
+                <th>Class</th>
+                <th>Program</th>
+                <th>Section</th>
+                <th>Group No.</th>
+                <th> </th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @registrations.each do |registration| %>
+              <tr>
+                <td><a href="events/<%= registration.event.id %>"><%= registration.event.description %></a></td>
+                <td><%= registration.event.date.strftime('%a %b. %e, %Y') %>
+                <td><%= registration.user.last_name %>, <%= registration.user.first_name %></td>
+                <td><%= registration.user.email %></td>
+                <td><%= registration.user.class_year %></td>
+                <td><%= registration.user.program.name %></td>
+                <td><%= registration.user.section.name %></td>
+                <td><%= registration.group_id %></td>
+                <td><div class="btn-group btn-group-justified">
+                  <a href="/registrations/<%= registration.id %>" class="btn btn-primary">
+                    <i class="fa fa-search-plus"></i>
+                  </a>
+
+                  <a href="/delete_registration/<%= registration.id %>" class="btn btn-danger" rel="nofollow">
+                    <i class="fa fa-trash-o"></i>
+                  </a>
+                </div>
+              </td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+</div>
+<% else %>
+
+<!--USER INDEX -->
+<div class="row isotope-container">
+  <% @registrations.each do |registration| %>
+  <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 isotope-item">
+
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Registration for <%= registration.event.description.first(20) %></h3>
       </div>
       <div class="panel-body">
         <dl>
           <dt>User</dt>
-          <dd><%= registration.user_id %></dd>
+          <dd><%= registration.user.last_name %>, <%= registration.user.first_name %></dd>
+          <dt>E-mail</dt>
+          <dd><%= registration.user.email %></dd>
 
           <dt>Event</dt>
-          <dd><%= registration.event_id %></dd>
+          <dd><a href="events/<%= registration.event.id %>"><%= registration.event.description %></a></dd>
+          <dt>Event Date</dt>
+          <dd><%= registration.event.date.strftime('%a %b. %e, %Y') %></a></dd>
 
+          <% if !registration.group_id.blank?  %>
+          <dt>Group #</dt>
+          <dd><%= registration.group_id %></dd>
+          <% end %>
+
+          <% if  current_user.admin?  %>
           <dt>Attended</dt>
           <dd><%= registration.attended %></dd>
+          <% end %>
 
         </dl>
         <div class="btn-group btn-group-justified">
@@ -39,20 +108,16 @@
             <i class="fa fa-search-plus"></i>
           </a>
 
-          <a href="/registrations/<%= registration.id %>/edit" class="btn btn-warning">
-            <i class="fa fa-edit"></i>
-          </a>
-
           <a href="/delete_registration/<%= registration.id %>" class="btn btn-danger" rel="nofollow">
-            <i class="fa fa-trash-o"></i>
+            <i class="fa fa-trash-o"></i> Cancel
           </a>
         </div>
       </div>
     </div>
   </div>
-<% end %>
+  <% end %>
 </div>
-
+<% end %>
 <!-- You can ignore the following. It's a quick and dirty example of how to get a Pinterest-style layout with quick search. -->
 <!-- JavaScript for Isotope layout and quicksearch -->
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/3.1.8/imagesloaded.pkgd.min.js"></script>

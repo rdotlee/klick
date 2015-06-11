@@ -93,10 +93,11 @@
                     <!-- Label and input for count_registration -->
           <div class="form-group">
             <label for="count_registration" class="col-sm-2 control-label">
-              Count registration
+              # of Participants
             </label>
             <div class="col-sm-10">
-              <%= @event.count_registration %>
+              <%= @event.registrations.count %>
+
             </div>
           </div>
 

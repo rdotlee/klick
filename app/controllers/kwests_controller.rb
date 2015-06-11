@@ -1,6 +1,6 @@
 class KwestsController < ApplicationController
   def index
-    @kwests = Kwest.all
+    @kwests = Kwest.order("year","trip")
   end
 
   def show

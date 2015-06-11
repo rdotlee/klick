@@ -1,7 +1,6 @@
 <div class="page-header">
   <h1>
     Groups
-    <a href="/groups/new" class="btn btn-lg btn-success"><i class="fa fa-plus"></i></a>
   </h1>
 </div>
 
@@ -25,9 +24,26 @@
       <div class="panel-body">
         <dl>
           <dt>Event</dt>
-          <dd><%= group.event_id %></dd>
+          <dd><a href="events/<%= group.event.id %>"><%= group.event.description %></a></dd>
+          <dt>Event Date</dt>
+          <dd><%= group.event.date.strftime('%a %b. %e, %Y') %></dd>
 
         </dl>
+        <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Class</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% Registration.where("group_id=?",group.id).each do |registration| %>
+                <tr>
+                  <td><%= registration.user.last_name %>, <%= registration.user.first_name %></td>
+                  <td><%= registration.user.class_year %></td>
+                <% end %>
+              </tbody>
+            </table>
         <div class="btn-group btn-group-justified">
           <a href="/groups/<%= group.id %>" class="btn btn-primary">
             <i class="fa fa-search-plus"></i>
